@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/framer-motion/10.12.16/framer-motion.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.263.0/dist/umd/lucide.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Pretendard:wght@100;400;700;900&display=swap');
+        
+        body {
+            font-family: 'Pretendard', sans-serif;
+            background-color: #0a0a0c;
+            color: #e2e8f0;
+            scroll-behavior: smooth;
+        }
+
+        .purple-gradient {
+            background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%);
+        }
+
+        .text-purple-glow {
+            text-shadow: 0 0 15px rgba(139, 92, 246, 0.5);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(139, 92, 246, 0.4);
+            transform: translateY(-5px);
+        }
+
+        section {
+            padding: 120px 20px;
+            position: relative;
+        }
+
+        .section-divider {
+            height: 1px;
+            width: 100%;
+            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.2), transparent);
+            position: absolute;
+            bottom: 0;
+            left: 0;
+        }
+
+        .nav-link {
+            transition: color 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #a78bfa;
+        }
+
+        @keyframes chartFadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+        .radar-chart {
+            animation: chartFadeIn 1.5s ease-out forwards;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #0a0a0c;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2d2d33;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #8b5cf6;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass-card border-none bg-opacity-80 px-6 py-4 flex justify-between items-center">
+        <div class="text-xl font-black tracking-tighter text-purple-glow italic">AI리터러시의 이해</div>
+        <div class="hidden md:flex space-x-8 text-sm font-medium opacity-80">
+            <a href="#intro" class="nav-link">Connection</a>
+            <a href="#about" class="nav-link">About</a>
+            <a href="#major" class="nav-link">Social Welfare</a>
+            <a href="#data" class="nav-link">Insights</a>
+            <a href="#vision" class="nav-link">Value</a>
+            <a href="#future" class="nav-link">Plans</a>
+            <a href="#media" class="nav-link">Media</a>
+        </div>
+    </nav>
+
+    <!-- Intro: Connection Section -->
+    <section id="intro" class="min-h-screen flex flex-col justify-center items-center text-center">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-2xl md:text-3xl font-bold tracking-widest text-purple-400 mb-8 uppercase">Connecting Me to My Vision</h2>
+            <h1 class="text-5xl md:text-7xl font-black tracking-tight mb-12">
+                나와 전공을 <span class="italic text-purple-500">연결하다</span>
+            </h1>
+            <div class="grid md:grid-cols-3 gap-8 items-center mb-12">
+                <div class="text-right hidden md:block">
+                    <span class="text-xl font-bold block mb-2">The Individual</span>
+                    <p class="text-sm opacity-50">나의 정체성과 가치관</p>
+                </div>
+                <div class="flex justify-center items-center">
+                    <div class="w-24 h-24 rounded-full border-2 border-purple-500 flex items-center justify-center animate-pulse">
+                        <i data-lucide="link" class="w-10 h-10 text-purple-500"></i>
+                    </div>
+                </div>
+                <div class="text-left hidden md:block">
+                    <span class="text-xl font-bold block mb-2">Social Welfare</span>
+                    <p class="text-sm opacity-50">사회를 향한 전공의 실천</p>
+                </div>
+            </div>
+            <p class="max-w-xl mx-auto text-lg opacity-70 leading-relaxed italic">
+                "단순한 지식의 습득을 넘어, 사회복지의 가치와 기술적 혁신이 만나는 지점에서 저의 진정한 정체성이 시작됩니다."
+            </p>
+        </div>
+        <div class="section-divider"></div>
+    </section>
+
+    <!-- About myself Section -->
+    <section id="about" class="min-h-screen flex flex-col justify-center items-center">
+        <div class="max-w-6xl w-full mx-auto">
+            <div class="text-center mb-16">
+                <div class="mb-6 inline-block px-4 py-1 rounded-full border border-purple-500/30 text-purple-400 text-xs tracking-widest uppercase">
+                    Profile & Identity
+                </div>
+                <h2 class="text-5xl md:text-6xl font-black tracking-tighter mb-4 italic">About myself</h2>
+                <div class="h-1 w-20 bg-purple-500 mx-auto"></div>
+            </div>
+
+            <div class="grid md:grid-cols-12 gap-12 items-center">
+                <!-- Left: Text Info -->
+                <div class="md:col-span-7 space-y-8">
+                    <div>
+                        <h3 class="text-3xl font-bold mb-2">유가원 <span class="text-lg font-normal opacity-50 ml-2">Gawon Ryu</span></h3>
+                        <div class="space-y-1">
+                            <p class="text-purple-400 font-medium">부산대학교 사회복지학과 4학년 (행정학과 부전공)</p>
+                            <p class="text-sm text-purple-300/80">데이터사이언스와 복지 SW융합트랙 이수</p>
+                            <div class="flex gap-4 mt-2">
+                                <span class="text-xs bg-white/10 px-2 py-1 rounded text-purple-200 flex items-center"><i data-lucide="award" class="w-3 h-3 mr-1"></i> 사회조사분석사 2급</span>
+                                <span class="text-xs bg-white/10 px-2 py-1 rounded text-purple-200 flex items-center"><i data-lucide="award" class="w-3 h-3 mr-1"></i> ADsP (데이터분석 준전문가)</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="glass-card p-6 rounded-2xl border-l-4 border-l-purple-500">
+                        <h4 class="text-xl font-bold mb-4 flex items-center">
+                            <i data-lucide="zap" class="w-5 h-5 mr-2 text-yellow-400"></i>
+                            MBTI: ESTJ <span class="text-sm font-normal opacity-50 ml-2">(경영자형)</span>
+                        </h4>
+                        <div class="flex flex-wrap gap-2 mb-4">
+                            <span class="px-3 py-1 bg-purple-500/20 rounded-full text-xs font-bold text-purple-300">#논리적</span>
+                            <span class="px-3 py-1 bg-purple-500/20 rounded-full text-xs font-bold text-purple-300">#이성적</span>
+                            <span class="px-3 py-1 bg-purple-500/20 rounded-full text-xs font-bold text-purple-300">#계획성</span>
+                            <span class="px-3 py-1 bg-purple-500/20 rounded-full text-xs font-bold text-purple-300">#책임감</span>
+                            <span class="px-3 py-1 bg-purple-500/20 rounded-full text-xs font-bold text-purple-300">#세상에대한관심</span>
+                        </div>
+                        <p class="text-sm opacity-70 leading-relaxed">
+                            ESTJ 특유의 체계적인 추진력을 바탕으로, <span class="text-purple-300 font-semibold">객관적인 데이터와 이성적인 판단</span>을 실질적인 변화로 바꾸어 나갑니다. 주변 사람들과 세상을 향한 따뜻한 시선은 저의 계획에 온기를 더하는 원동력입니다.
+                        </p>
+                    </div>
+
+                    <div class="space-y-4">
+                        <h4 class="text-xl font-bold flex items-center italic">
+                            <i data-lucide="search" class="w-5 h-5 mr-2 text-purple-500"></i>
+                            Core Interest
+                        </h4>
+                        <p class="text-xl leading-relaxed opacity-90">
+                            "다양한 사회문제를 <span class="text-white font-bold underline decoration-purple-500 underline-offset-4">제도적·행정적</span>으로 해결하고, <br/>
+                            <span class="text-purple-300 font-bold italic">데이터 기반의 통찰</span>로 복지 사각지대를 해소하는 것"
+                        </p>
+                        <p class="text-base opacity-70 leading-relaxed">
+                            <span class="text-purple-300 font-semibold">사회조사분석사 및 ADsP 역량을 활용해 사회 문제를 논리적, 객관적, 분석적</span>으로 바라봅니다. 데이터를 활용하여 우리 사회의 숨겨진 현상을 통찰하고, 현상의 본질을 꿰뚫는 통계적 근거를 바탕으로 실현 가능한 최적의 행정적 개선책을 찾아내고자 합니다.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Right: Radar Chart SVG -->
+                <div class="md:col-span-5 flex flex-col items-center justify-center glass-card p-10 rounded-3xl relative overflow-visible">
+                    <div class="absolute inset-0 bg-purple-600/5 blur-3xl"></div>
+                    <h4 class="text-sm font-bold uppercase tracking-widest text-purple-400 mb-8">Personal Strength Radar</h4>
+                    
+                    <svg class="radar-chart w-64 h-64 md:w-80 md:h-80 overflow-visible" viewBox="0 0 200 200">
+                        <polygon points="100,35 171,85 144,165 56,165 29,85" fill="none" stroke="white" stroke-width="0.5" opacity="0.2" />
+                        <polygon points="100,70 135,95 122,135 78,135 65,95" fill="none" stroke="white" stroke-width="0.5" opacity="0.1" />
+                        <line x1="100" y1="105" x2="100" y2="35" stroke="white" stroke-width="0.5" opacity="0.2" />
+                        <line x1="100" y1="105" x2="171" y2="85" stroke="white" stroke-width="0.5" opacity="0.2" />
+                        <line x1="100" y1="105" x2="144" y2="165" stroke="white" stroke-width="0.5" opacity="0.2" />
+                        <line x1="100" y1="105" x2="56" y2="165" stroke="white" stroke-width="0.5" opacity="0.2" />
+                        <line x1="100" y1="105" x2="29" y2="85" stroke="white" stroke-width="0.5" opacity="0.2" />
+                        <polygon points="100,45 168,81 135,153 60,158 35,87" fill="rgba(139, 92, 246, 0.4)" stroke="#8b5cf6" stroke-width="2" />
+                        <text x="100" y="25" text-anchor="middle" font-size="10" fill="white" font-weight="bold">계획성</text>
+                        <text x="180" y="85" text-anchor="start" font-size="10" fill="white" font-weight="bold">실천력</text>
+                        <text x="144" y="180" text-anchor="middle" font-size="10" fill="white" font-weight="bold">대인관계 능력</text>
+                        <text x="56" y="180" text-anchor="middle" font-size="10" fill="white" font-weight="bold">책임감</text>
+                        <text x="20" y="85" text-anchor="end" font-size="10" fill="white" font-weight="bold">논리력</text>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <div class="section-divider"></div>
+    </section>
+
+    <!-- About Social Welfare Section -->
+    <section id="major" class="max-w-6xl mx-auto">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold italic mb-4 uppercase tracking-tighter">About Social Welfare</h2>
+            <div class="h-1 w-20 bg-purple-500 mx-auto mb-4"></div>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-8 items-stretch mb-12">
+            <div class="space-y-6">
+                <div class="glass-card p-8 rounded-3xl h-full border-t-2 border-t-purple-500/50">
+                    <h3 class="text-2xl font-bold mb-6 flex items-center">
+                        <i data-lucide="book-open" class="w-6 h-6 mr-3 text-purple-400"></i>
+                        무엇을 배우는가
+                    </h3>
+                    <div class="space-y-4">
+                        <p class="text-sm opacity-70 leading-relaxed text-justify">
+                            사회복지학은 단순히 어려운 이웃을 돕는 방법을 넘어, <strong>인간의 존엄성</strong>을 보호하기 위한 복잡한 사회적 안전망을 설계하는 고도의 실천 학문입니다. 특히 <strong>국민기초생활보장 맞춤형급여</strong>와 같은 제도적 메커니즘을 분석하고, 현세대 노년층의 경제적 결핍을 해결하기 위한 실질적인 정책 도구를 학습합니다.
+                        </p>
+                        <p class="text-sm opacity-70 leading-relaxed text-justify">
+                            사회보장론을 통해 국가가 시민의 생계를 보장하는 원리를 탐구하고, 사회복지 행정론에서 막대한 복지 예산을 효율적으로 집행하는 관리 능력을 배양합니다. 최근에는 데이터사이언스를 결합하여 복지 사각지대를 수치로 규명하고 과학적으로 대응하는 <strong>SW융합 실천 역량</strong>까지 확장하여 학습하고 있습니다.
+                        </p>
+                        <ul class="text-sm space-y-2 opacity-80 pt-4">
+                            <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-2 text-purple-500"></i> 사회복지 정책의 수립 및 효과성 분석</li>
+                            <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-2 text-purple-500"></i> 노인·장애인 등 대상별 심층 사례관리 기술</li>
+                            <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-2 text-purple-500"></i> 공공지출 및 지자체 복지시설 운영 최적화</li>
+                            <li class="flex items-center"><i data-lucide="check" class="w-4 h-4 mr-2 text-purple-500"></i> 사회 통계 및 데이터 기반의 수요 예측</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-6">
+                <div class="glass-card p-8 rounded-3xl h-full border-t-2 border-t-blue-500/50">
+                    <h3 class="text-2xl font-bold mb-6 flex items-center">
+                        <i data-lucide="navigation" class="w-6 h-6 mr-3 text-blue-400"></i>
+                        어디로 나아가는가
+                    </h3>
+                    <div class="space-y-4">
+                        <p class="text-sm opacity-70 leading-relaxed text-justify">
+                            노령화지수가 143(21년)에서 186.7(24년)로 폭발적으로 성장하는 미래 사회에서, 사회복지 전문가는 국가 존립을 위한 <strong>'필수 공공 서비스'의 설계자</strong>로 나아갑니다. 전통적인 사회복지사를 넘어, 방대한 복지 자원을 배분하는 행정가와 고령 인구의 삶의 질을 관리하는 산업 리더로 성장합니다.
+                        </p>
+                        <p class="text-sm opacity-70 leading-relaxed text-justify">
+                            생산연령인구의 부담(노년부양비 27.9)이 가중되는 현실에서, 한정된 자원의 효율을 극대화하는 <strong>스마트 복지 시스템 기획자</strong>의 역할이 중요해지고 있습니다. 숫자로 증명된 근거를 바탕으로 정책을 입안하고, 지능형 복지 인프라를 구축하여 사회적 불평등을 해소하는 미래 지향적 전문가로 거듭납니다.
+                        </p>
+                        <ul class="text-sm space-y-2 opacity-80 pt-4">
+                            <li class="flex items-center"><i data-lucide="arrow-right" class="w-4 h-4 mr-2 text-blue-500"></i> 복지 정책 데이터 분석가 및 전략 기획자</li>
+                            <li class="flex items-center"><i data-lucide="arrow-right" class="w-4 h-4 mr-2 text-blue-500"></i> 스마트 시티 기반 공공 행정 및 복지 전달 전문가</li>
+                            <li class="flex items-center"><i data-lucide="arrow-right" class="w-4 h-4 mr-2 text-blue-500"></i> 글로벌 NGO 및 사회적 경제 조직 리더</li>
+                            <li class="flex items-center"><i data-lucide="arrow-right" class="w-4 h-4 mr-2 text-blue-500"></i> 고령 친화 산업 및 케어 테크 비즈니스 전문가</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-16">
+            <div class="glass-card p-6 rounded-2xl flex flex-col items-center text-center hover:bg-purple-500/5 transition-colors">
+                <div class="bg-purple-500/20 p-3 rounded-full mb-4">
+                    <i data-lucide="heart" class="w-6 h-6 text-purple-400"></i>
+                </div>
+                <h4 class="font-bold mb-2">사회복지 실천 역량</h4>
+                <p class="text-xs opacity-60 leading-relaxed">아동, 노인, 장애인 등 대상별 심층 이해와 상담 및 사례관리 전문 기술</p>
+            </div>
+            <div class="glass-card p-6 rounded-2xl flex flex-col items-center text-center hover:bg-purple-500/5 transition-colors">
+                <div class="bg-purple-500/20 p-3 rounded-full mb-4">
+                    <i data-lucide="landmark" class="w-6 h-6 text-purple-400"></i>
+                </div>
+                <h4 class="font-bold mb-2">정책 및 행정 관리</h4>
+                <p class="text-xs opacity-6060 leading-relaxed">사회보장제도의 분석과 복지 서비스 전달 체계의 효율적 운영 및 관리</p>
+            </div>
+            <div class="glass-card p-6 rounded-2xl flex flex-col items-center text-center hover:bg-purple-500/5 transition-colors">
+                <div class="bg-purple-500/20 p-3 rounded-full mb-4">
+                    <i data-lucide="users" class="w-6 h-6 text-purple-400"></i>
+                </div>
+                <h4 class="font-bold mb-2">지역사회 조직화</h4>
+                <p class="text-xs opacity-60 leading-relaxed">공동체 문제 해결을 위한 주민 조직화 및 사회 자원 연계와 개발 역량</p>
+            </div>
+            <div class="glass-card p-6 rounded-2xl flex flex-col items-center text-center hover:bg-purple-500/5 transition-colors">
+                <div class="bg-purple-500/20 p-3 rounded-full mb-4">
+                    <i data-lucide="balance-scale" class="w-6 h-6 text-purple-400"></i>
+                </div>
+                <h4 class="font-bold mb-2">사회 정의와 인권</h4>
+                <p class="text-xs opacity-60 leading-relaxed">사회적 약자의 권리 옹호와 사회 불평등 해소를 위한 비판적 사고와 윤리 의식</p>
+            </div>
+        </div>
+        <div class="section-divider"></div>
+    </section>
+
+    <!-- Data & Insight Section -->
+    <section id="data" class="bg-[#0f0f12]">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-bold italic mb-4">Data & Insight</h2>
+                <p class="text-purple-400 font-medium">현상을 데이터로 증명하고, 미래의 복지 방향을 제안합니다.</p>
+            </div>
+
+            <!-- Main Dashboard Layout -->
+            <div class="grid md:grid-cols-3 gap-6 mb-6">
+                <!-- 1. Aging Index Trend -->
+                <div class="glass-card p-6 rounded-3xl md:col-span-2">
+                    <div class="flex justify-between items-center mb-6">
+                        <h4 class="font-bold flex items-center">
+                            <i data-lucide="trending-up" class="w-5 h-5 mr-2 text-red-400"></i>
+                            고령화 지수 급증 추이 (2021-2024)
+                        </h4>
+                    </div>
+                    <div class="h-80">
+                        <canvas id="agingChart"></canvas>
+                    </div>
+                    <p class="mt-4 text-xs opacity-60 leading-relaxed">
+                        노령화 지수가 2021년 143.0에서 2024년 186.7로 약 <span class="text-red-400 font-bold text-sm">43.7p 급상승</span>했습니다. 이는 매년 인구 구조가 얼마나 가파르게 변화하고 있는지 명확히 보여줍니다.
+                    </p>
+                </div>
+
+                <!-- 2. Social Welfare Expenditure Structure -->
+                <div class="glass-card p-8 rounded-3xl border-t-2 border-purple-500/20 md:col-span-1 flex flex-col justify-center items-center text-center">
+                    <h4 class="font-bold mb-6 flex items-center text-xl text-white justify-center">
+                        <i data-lucide="shield-check" class="w-6 h-6 mr-2 text-purple-400"></i>
+                        공공지출 증가율과 복지의 중요성
+                    </h4>
+                    <div class="h-64 w-full flex justify-center items-center">
+                        <canvas id="expenditureChart"></canvas>
+                    </div>
+                    <p class="mt-8 text-base opacity-80 leading-relaxed px-2">
+                        공공지출은 <span class="text-purple-400 font-bold">전년 대비 11.5% 증가</span>하며 국가의 적극적 개입이 강화되고 있음을 시사합니다.
+                    </p>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-6 mb-12">
+                <!-- 3. Summary Stats -->
+                <div class="grid grid-cols-2 md:grid-cols-1 md:grid-rows-2 gap-4 md:col-span-1">
+                    <div class="glass-card p-4 rounded-2xl border-l-4 border-l-green-500 flex flex-col items-center justify-center text-center">
+                        <div class="text-xs font-black text-green-400 uppercase mb-1">Total Welfare Spend</div>
+                        <div class="text-3xl font-black text-white">459.1조</div>
+                    </div>
+                    <div class="glass-card p-4 rounded-2xl border-l-4 border-l-blue-500 flex flex-col items-center justify-center text-center">
+                        <div class="text-xs font-black text-blue-400 uppercase mb-1">Facility Growth</div>
+                        <div class="text-3xl font-black text-white">+4.7%</div>
+                    </div>
+                </div>
+
+                <!-- 4. Insight Analysis -->
+                <div class="glass-card p-8 rounded-3xl bg-purple-500/5 border border-purple-500/20 md:col-span-2">
+                    <h4 class="text-xl font-bold mb-8 italic text-purple-300">Strategic Insight</h4>
+                    <div class="grid md:grid-cols-3 gap-6">
+                        <div class="space-y-4 text-center">
+                            <h5 class="font-black text-lg text-white">01. 초고령 사회 대응</h5>
+                            <p class="text-xs opacity-70 leading-relaxed mx-auto max-w-[150px]">가파른 고령화 지수 상승에 따른 노인 부양 부담 급증과 맞춤형 돌봄 서비스의 확대가 절실합니다.</p>
+                        </div>
+                        <div class="space-y-4 text-center">
+                            <h5 class="font-black text-lg text-white">02. 인구 구조 불균형</h5>
+                            <p class="text-xs opacity-70 leading-relaxed mx-auto max-w-[150px]">생산인구 감소에 따른 효율적 행정 시스템이 시급합니다.</p>
+                        </div>
+                        <div class="space-y-4 text-center">
+                            <h5 class="font-black text-lg text-white">03. IT 융합의 가치</h5>
+                            <p class="text-xs opacity-70 leading-relaxed mx-auto max-w-[150px]">지속적으로 증가하는 복지 수요를 효율적으로 관리하기 위해 지능형 서비스 및 데이터 기반 인프라 구축이 핵심입니다.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="section-divider"></div>
+    </section>
+
+    <!-- Value & Vision Section -->
+    <section id="vision" class="max-w-6xl mx-auto pt-20 pb-12">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold italic mb-4">Value & Vision</h2>
+            <p class="text-purple-400 font-medium">전공이 가지는 사회적 가치와 미래를 향한 나침반</p>
+        </div>
+
+        <div class="grid lg:grid-cols-3 gap-8 mb-16">
+            <!-- Social Welfare -->
+            <div class="glass-card p-8 rounded-3xl border-t-2 border-t-pink-500/50 flex flex-col h-full">
+                <div class="flex items-center mb-6">
+                    <div class="bg-pink-500/20 p-3 rounded-xl mr-4">
+                        <i data-lucide="heart" class="w-6 h-6 text-pink-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white">사회복지 <span class="text-sm font-normal opacity-60 ml-1">본전공</span></h3>
+                </div>
+                <div class="space-y-6 flex-grow">
+                    <div>
+                        <h4 class="text-pink-300 font-bold mb-2 text-sm flex items-center"><i data-lucide="users" class="w-4 h-4 mr-1"></i> 사회적 의미</h4>
+                        <p class="text-sm opacity-70 leading-relaxed text-justify">
+                            기초생활보장 수급 자료에 따르면 60대 수급자의 연간 수령액이 2021년 511만 원에서 2023년 713만 원으로 급증했습니다. 이는 현세대 노년층의 경제적 결핍 심화를 의미하며, 사회복지는 이러한 수치 이면의 고통을 진단하고 실질적인 생계를 보장하는 <strong>최전선의 안전망</strong> 역할을 합니다.
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="text-pink-300 font-bold mb-2 text-sm flex items-center"><i data-lucide="arrow-up-right" class="w-4 h-4 mr-1"></i> 미래적 의미</h4>
+                        <p class="text-sm opacity-70 leading-relaxed text-justify">
+                            노령화 지수가 143.0(21년)에서 186.7(24년)로 급등하는 현실 속에서, 미래의 사회복지는 단순한 '선택적 구호'를 넘어 국가 존립을 위한 <strong>'필수적 공공 서비스'</strong>이자 비대해지는 고령 인구의 삶의 질을 관리하는 핵심 산업이 될 것입니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Public Administration -->
+            <div class="glass-card p-8 rounded-3xl border-t-2 border-t-blue-500/50 flex flex-col h-full">
+                <div class="flex items-center mb-6">
+                    <div class="bg-blue-500/20 p-3 rounded-xl mr-4">
+                        <i data-lucide="landmark" class="w-6 h-6 text-blue-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white">행정학 <span class="text-sm font-normal opacity-60 ml-1">부전공</span></h3>
+                </div>
+                <div class="space-y-6 flex-grow">
+                    <div>
+                        <h4 class="text-blue-300 font-bold mb-2 text-sm flex items-center"><i data-lucide="building" class="w-4 h-4 mr-1"></i> 사회적 의미</h4>
+                        <p class="text-sm opacity-70 leading-relaxed text-justify">
+                            2022년 총사회복지지출 459조 원 중 공공지출이 377조 원으로 압도적이며, 사회복지시설 1,278개 중 958개가 지자체 운영입니다. 행정은 이처럼 막대한 공공 자본과 인프라를 사회 곳곳에 효율적으로 배분하고 집행하는 <strong>거대 자원 관리의 시스템적 근간</strong>입니다.
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="text-blue-300 font-bold mb-2 text-sm flex items-center"><i data-lucide="arrow-up-right" class="w-4 h-4 mr-1"></i> 미래적 의미</h4>
+                        <p class="text-sm opacity-70 leading-relaxed text-justify">
+                            노년부양비가 27.9(24년)까지 치솟아 생산인구의 부담이 가중되는 미래에는 한정된 자원으로 폭증하는 복지 수요를 감당해야 합니다. 공공지출의 효율을 극대화하고 거대한 시설 면적(1,135만㎡)을 최적으로 관리하는 <strong>고도화된 경영 능력</strong>이 필수적입니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Data Science & Welfare SW Convergence -->
+            <div class="glass-card p-8 rounded-3xl border-t-2 border-t-purple-500/50 flex flex-col h-full">
+                <div class="flex items-center mb-6">
+                    <div class="bg-purple-500/20 p-3 rounded-xl mr-4">
+                        <i data-lucide="cpu" class="w-6 h-6 text-purple-400"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-white leading-tight">데이터사이너스와 <br/>복지 SW융합트랙</h3>
+                </div>
+                <div class="space-y-6 flex-grow">
+                    <div>
+                        <h4 class="text-purple-300 font-bold mb-2 text-sm flex items-center"><i data-lucide="bar-chart-2" class="w-4 h-4 mr-1"></i> 사회적 의미</h4>
+                        <p class="text-sm opacity-70 leading-relaxed text-justify">
+                            중위연령(44.5세→46.2세)의 상승이나 시설 주체별 비중 등, 자칫 막연하게 느껴질 수 있는 사회 현상을 '숫자'라는 객관적 언어로 치환합니다. 데이터는 사회의 현재 위치를 정확히 진단하게 돕는 <strong>가장 정밀한 과학적 도구</strong>입니다.
+                        </p>
+                    </div>
+                    <div>
+                        <h4 class="text-purple-300 font-bold mb-2 text-sm flex items-center"><i data-lucide="arrow-up-right" class="w-4 h-4 mr-1"></i> 미래적 의미</h4>
+                        <p class="text-sm opacity-70 leading-relaxed text-justify">
+                            제한된 행정 자원과 폭발하는 복지 수요의 모순을 해결하기 위해서는 정확한 수요 예측이 필요합니다. 과거의 패턴을 분석하여 미래의 위기를 선제적으로 찾아내고, 효율적인 지능형 복지 서비스를 설계하는 <strong>혁신의 원동력</strong>이 됩니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Slogan Section -->
+        <div class="glass-card p-10 rounded-3xl text-center relative overflow-hidden bg-gradient-to-br from-purple-900/20 to-black mb-20">
+            <div class="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5"></div>
+            <div class="relative z-10">
+                <i data-lucide="quote" class="w-12 h-12 mx-auto mb-6 text-purple-500/50"></i>
+                <h3 class="text-3xl md:text-5xl font-black mb-6 leading-tight whitespace-nowrap overflow-hidden">
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-500">데이터</span>로 진단하고, 
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-500">행정</span>으로 설계하며, 
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-pink-400 to-red-500">복지</span>로 치유하다
+                </h3>
+                <p class="max-w-2xl mx-auto text-sm md:text-base opacity-70 leading-relaxed mt-6">
+                    데이터사이언스의 객관적인 분석력으로 사회 현상을 명확히 진단하고, 행정학의 체계적인 시스템 관점론으로 실현 가능한 제도를 설계하며, 최종적으로 사회복지학의 따뜻한 인간애를 통해 세상의 고통을 실질적으로 치유하는 미래형 융합 인재로 나아가겠습니다.
+                </p>
+            </div>
+        </div>
+
+        <!-- Connecting Me to My Vision Section -->
+        <div class="relative py-20 px-10 rounded-[40px] overflow-hidden bg-[#0c0c0e] border border-white/5 mb-16">
+            <div class="absolute top-0 left-1/4 w-96 h-96 bg-purple-600/10 blur-[120px]"></div>
+            <div class="absolute bottom-0 right-1/4 w-96 h-96 bg-blue-600/10 blur-[120px]"></div>
+            
+            <h2 class="text-5xl md:text-6xl font-black text-center mb-24 uppercase tracking-tighter text-transparent bg-clip-text bg-gradient-to-b from-white to-white/40">
+                Connecting Me to My Vision
+            </h2>
+
+            <div class="grid md:grid-cols-3 gap-10 relative z-10">
+                <!-- Card 1 -->
+                <div class="group relative p-8 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-500">
+                    <div class="absolute -top-6 left-8 bg-purple-600 p-4 rounded-2xl shadow-[0_0_30px_rgba(139,92,246,0.4)]">
+                        <i data-lucide="zap" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <div class="mt-8 space-y-4">
+                        <div class="text-purple-400 font-black text-xs uppercase tracking-[0.2em]">Strength x Social Welfare</div>
+                        <h4 class="text-2xl font-bold text-white group-hover:text-purple-300 transition-colors">ESTJ의 실천력으로 <br/>완성하는 정밀 복지</h4>
+                        <div class="w-12 h-1 bg-purple-500 rounded-full"></div>
+                        <p class="text-sm text-white/60 leading-relaxed text-justify pt-2">
+                            저의 <strong>계획성과 실천력</strong>은 복지 현장의 파편화된 사례들을 하나의 체계적인 시스템으로 구조화하는 데 강력한 힘을 발휘합니다. 막연한 동정심에 머물지 않고, 수혜자의 상황을 객관적인 지표로 환산하여 <strong>'가장 필요한 시점'에 '가장 적절한 자원'</strong>이 전달되도록 공정을 설계합니다. 사회복지 현장에서 마주하는 복잡한 갈등 상황에서도 변함없는 책임감으로 실질적인 삶의 변화를 이끌어내는 이정표가 되겠습니다.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="group relative p-8 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-500">
+                    <div class="absolute -top-6 left-8 bg-blue-600 p-4 rounded-2xl shadow-[0_0_30px_rgba(37,99,235,0.4)]">
+                        <i data-lucide="landmark" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <div class="mt-8 space-y-4">
+                        <div class="text-blue-400 font-black text-xs uppercase tracking-[0.2em]">Interest x Administration</div>
+                        <h4 class="text-2xl font-bold text-white group-hover:text-blue-300 transition-colors">거시적 통찰력으로 <br/>설계하는 행정 인프라</h4>
+                        <div class="w-12 h-1 bg-blue-500 rounded-full"></div>
+                        <p class="text-sm text-white/60 leading-relaxed text-justify pt-2">
+                            "어떻게 하면 사회 문제를 <strong>제도적으로 해결할 것인가</strong>"라는 근본적인 질문은 저의 행정학적 전문성과 직결됩니다. 단순히 현상을 관리하는 것을 넘어, 지자체 복지 시설의 운영 효율을 극대화하고 공공지출의 사각지대를 제로화하는 시스템적 대안을 제시합니다. 1,135만㎡에 달하는 복지 인프라가 단순한 공간을 넘어 시민의 삶을 실질적으로 지탱하는 <strong>효율적인 공공 경영의 결과물</strong>이 되도록 행정적 역량을 쏟겠습니다.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="group relative p-8 rounded-3xl bg-white/5 border border-white/10 hover:bg-white/10 transition-all duration-500">
+                    <div class="absolute -top-6 left-8 bg-pink-600 p-4 rounded-2xl shadow-[0_0_30px_rgba(219,39,119,0.4)]">
+                        <i data-lucide="cpu" class="w-8 h-8 text-white"></i>
+                    </div>
+                    <div class="mt-8 space-y-4">
+                        <div class="text-pink-400 font-black text-xs uppercase tracking-[0.2em]">Logic x Data Science</div>
+                        <h4 class="text-2xl font-bold text-white group-hover:text-pink-300 transition-colors">과학적 언어로 증명하는 <br/>미래 사회 혁신</h4>
+                        <div class="w-12 h-1 bg-pink-500 rounded-full"></div>
+                        <p class="text-sm text-white/60 leading-relaxed text-justify pt-2">
+                            현상의 본질을 꿰뚫는 <strong>이성적·논리적 사고</strong>는 데이터사이언스를 통해 '증명 가능한 혁신'으로 탄생합니다. 노령화 지수 186.7라는 수치 뒤에 숨겨진 인구 구조의 불균형과 고령층의 잠재적 빈곤 위험을 머신러닝 알고리즘으로 예측합니다. 감정에 치우치지 않는 <strong>데이터 기반의 의사결정</strong>은 복지 서비스의 신뢰도를 높이고, 한정된 국가 예산이 미래의 가장 시급한 지점에 먼저 투입될 수 있도록 돕는 과학적 등불이 될 것입니다.
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- INFOGRAPHIC BUTTON -->
+            <div class="flex justify-center mt-20 relative z-10">
+                <button onclick="window.open('./info.jpg', '_blank')" class="group flex items-center space-x-4 px-10 py-5 bg-gradient-to-r from-purple-600 to-blue-600 rounded-2xl text-white font-black text-xl hover:scale-105 transition-all shadow-[0_0_30px_rgba(139,92,246,0.3)] hover:shadow-[0_0_50px_rgba(139,92,246,0.5)]">
+                    <i data-lucide="bar-chart-big" class="w-6 h-6"></i>
+                    <span>OPEN INFOGRAPHIC</span>
+                    <i data-lucide="external-link" class="w-5 h-5 opacity-50 group-hover:opacity-100 transition-opacity"></i>
+                </button>
+            </div>
+        </div>
+        <div class="section-divider"></div>
+    </section>
+
+    <!-- Plans for future Section -->
+    <section id="future" class="max-w-4xl mx-auto pb-32">
+        <h2 class="text-center text-4xl font-bold mb-20 italic">Plans for future</h2>
+        <div class="relative pl-12 border-l border-purple-500/30 space-y-20">
+            <!-- Phase 1 -->
+            <div class="relative">
+                <div class="absolute -left-[53px] top-0 w-4 h-4 rounded-full bg-purple-500 border-4 border-[#0a0a0c]"></div>
+                <h3 class="text-2xl font-bold mb-4">Phase 1: Academic Achievement</h3>
+                <p class="opacity-80 font-bold mb-2 text-purple-400">사회복지학부 졸업 및 사회복지사 1급 자격증 취득</p>
+                <p class="opacity-60 leading-relaxed">성공적인 학업 마무리와 함께 사회복지 전문가로서 갖춰야 할 필수 국가 자격인 사회복지사 1급을 취득하여 실무를 위한 전문 지식 기반을 확고히 다지겠습니다.</p>
+            </div>
+            <!-- Phase 2 -->
+            <div class="relative">
+                <div class="absolute -left-[53px] top-0 w-4 h-4 rounded-full bg-purple-500/50 border-4 border-[#0a0a0c]"></div>
+                <h3 class="text-2xl font-bold mb-4">Phase 2: Career Entry</h3>
+                <p class="opacity-80 font-bold mb-2 text-purple-400">4대보험공단(국민연금, 건강보험, 근로복지공단) 입사 준비</p>
+                <p class="opacity-60 leading-relaxed">국가 복지 전달 체계의 핵심인 주요 공단 입사를 목표로 전공 역량과 행정 지식을 결합하여 준비하겠습니다. 공공의 이익을 실현하는 조직의 일원이 되기 위한 실질적인 준비 단계입니다.</p>
+            </div>
+            <!-- Phase 3 -->
+            <div class="relative">
+                <div class="absolute -left-[53px] top-0 w-4 h-4 rounded-full bg-purple-500/20 border-4 border-[#0a0a0c]"></div>
+                <h3 class="text-2xl font-bold mb-4">Phase 3: Social Contribution</h3>
+                <p class="opacity-80 font-bold mb-2 text-purple-400">복지행정 전문가로서 사각지대 해소 및 복지 증진 기여</p>
+                <p class="opacity-60 leading-relaxed">입사 후 복지행정 전문가로서 제도를 적극 활용해 복지 취약계층을 선제적으로 발굴하겠습니다. 사각지대를 해소함으로써 국민 전체의 복지 증진에 이바지하는 가치 있는 실천가가 되겠습니다.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Media Section -->
+    <section id="media" class="max-w-6xl mx-auto py-32 border-t border-white/5">
+        <div class="text-center mb-16">
+            <h2 class="text-4xl font-bold italic mb-4 uppercase tracking-tighter">Media Content</h2>
+            <div class="h-1 w-20 bg-purple-500 mx-auto mb-12"></div>
+            <div class="flex flex-col md:flex-row justify-center gap-6 items-center">
+                <!-- Storybook Button -->
+                <button onclick="window.open('https://gemini.google.com/share/077e5f24e3f9', '_blank')" class="group relative flex items-center justify-center space-x-4 px-12 py-6 bg-white/5 border border-white/10 rounded-[2rem] hover:bg-white/10 transition-all duration-300 w-full md:w-auto overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <i data-lucide="book-heart" class="w-6 h-6 text-purple-400"></i>
+                    <span class="text-xl font-bold text-white tracking-tight uppercase">Storybook</span>
+                    <i data-lucide="chevron-right" class="w-5 h-5 opacity-30 group-hover:translate-x-1 transition-all"></i>
+                </button>
+
+                <!-- Storybook Video Button -->
+                <button onclick="window.open('./video_c.mp4', '_blank')" class="group relative flex items-center justify-center space-x-4 px-12 py-6 bg-white/5 border border-white/10 rounded-[2rem] hover:bg-white/10 transition-all duration-300 w-full md:w-auto overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <i data-lucide="film" class="w-6 h-6 text-pink-400"></i>
+                    <span class="text-xl font-bold text-white tracking-tight uppercase">Storybook Video</span>
+                    <i data-lucide="chevron-right" class="w-5 h-5 opacity-30 group-hover:translate-x-1 transition-all"></i>
+                </button>
+                
+                <!-- Video Button (Updated path) -->
+                <button onclick="window.open('./video2_c.mp4', '_blank')" class="group relative flex items-center justify-center space-x-4 px-12 py-6 bg-white/5 border border-white/10 rounded-[2rem] hover:bg-white/10 transition-all duration-300 w-full md:w-auto overflow-hidden">
+                    <div class="absolute inset-0 bg-gradient-to-r from-blue-500/10 to-pink-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <i data-lucide="play-circle" class="w-6 h-6 text-blue-400"></i>
+                    <span class="text-xl font-bold text-white tracking-tight uppercase">Video</span>
+                    <i data-lucide="chevron-right" class="w-5 h-5 opacity-30 group-hover:translate-x-1 transition-all"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 border-t border-white/5 text-center">
+        <div class="text-xs opacity-40 uppercase tracking-widest mb-4">Designed with Purple Aura</div>
+        <p class="text-sm opacity-60">© 2024 Personal Intro Archive. All rights reserved.</p>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        // 1. Aging Index Chart
+        const ctxAging = document.getElementById('agingChart').getContext('2d');
+        new Chart(ctxAging, {
+            type: 'line',
+            data: {
+                labels: ['2021', '2022', '2023', '2024'],
+                datasets: [{
+                    label: '노령화 지수',
+                    data: [143.0, 156.1, 171.0, 186.7],
+                    borderColor: '#8b5cf6',
+                    backgroundColor: 'rgba(139,92,246,0.1)',
+                    fill: true,
+                    tension: 0.3,
+                    pointRadius: 6,
+                    pointBackgroundColor: '#8b5cf6',
+                    borderWidth: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { display: true, labels: { color: '#e2e8f0', font: { size: 10 } } }
+                },
+                scales: {
+                    y: { 
+                        min: 100,
+                        max: 200,
+                        grid: { color: 'rgba(255,255,255,0.05)' }, 
+                        ticks: { color: 'rgba(255,255,255,0.5)' } 
+                    },
+                    x: { grid: { display: false }, ticks: { color: 'rgba(255,255,255,0.5)' } }
+                }
+            }
+        });
+
+        // 2. Expenditure Structure Chart
+        const ctxExp = document.getElementById('expenditureChart').getContext('2d');
+        new Chart(ctxExp, {
+            type: 'doughnut',
+            data: {
+                labels: ['공공지출', '자발적 민간', '법정 민간'],
+                datasets: [{
+                    data: [377268237.5, 55869703.7, 25926215.8],
+                    backgroundColor: ['#8b5cf6', 'rgba(59, 130, 246, 0.3)', 'rgba(16, 185, 129, 0.3)'],
+                    hoverOffset: 15,
+                    borderWidth: 2,
+                    borderColor: '#0f0f12'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '60%',
+                plugins: {
+                    legend: { position: 'bottom', labels: { color: '#e2e8f0', padding: 10, font: { size: 11, weight: 'bold' } } }
+                }
+            }
+        });
+
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('opacity-100');
+                    entry.target.classList.remove('opacity-0', 'translate-y-10');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            section.classList.add('transition-all', 'duration-1000', 'opacity-0', 'translate-y-10');
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
